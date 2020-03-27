@@ -28,15 +28,15 @@ d3.json(url, (data) => {
 
       var lat = feature.geometry.coordinates[1]
       var lng = feature.geometry.coordinates[0]
-
-      console.log(lat, lng)
       var location = [lat, lng]
       
       if (lat && lng) { arrHeat.push(location) }
-
       }
   })
 
+  console.log(arrHeat)
+
+  
   var mapHeat = L.heatLayer(arrHeat, {
       radius: 25,
       blur: 20,
