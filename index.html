@@ -2,7 +2,13 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>NYC Boroughs</title>
+    <title>YUP</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <!-- Leaflet JS & CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
@@ -11,39 +17,58 @@
 
     <!-- d3 JavaScript -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
-
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <!-- Our CSS -->
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
 
   </head>
   <body>
 
-    <form>
-      <div class="form-group">
-        <ul class="list-group" id="filters">
-          <li class="filter list-group-item">
-            <label for="date">Start Date: </label>
-            <input class="form-control" id="startdate" type="text" placeholder="3-14-2012">
-          </li>
-          <li class="filter list-group-item">
-            <label for="date">End Date: </label>
-            <input class="form-control" id="enddate" type="text" placeholder="12-21-2012">
-          </li>
-        </ul>
-      </div>
-      <button id="filter-btn" type="button" class="btn btn-default">Filter Permits</button>
-    </form>
 
+
+
+    <div class="container">
+      <div class="row">
+        <!-- Plotly Plots -->
+        <div class="col-lg-5">
+          <div id="plot"></div>
+        </div>
+        <div class="col-lg-5">
+          <div id="pie"></div>
+        </div>
+        <!-- Filter Form -->
+        <div class="col-lg-2">
+          <form>
+            <div class="form-group">
+              <ul class="list-group" id="filters">
+                <li class="filter list-group-item">
+                  <label for="date">Start Date: </label>
+                  <input class="form-control" id="startdate" type="text" placeholder="3-14-2012">
+                </li>
+                <li class="filter list-group-item">
+                  <label for="date">End Date: </label>
+                  <input class="form-control" id="enddate" type="text" placeholder="12-21-2012">
+                </li>
+              </ul>
+            </div>
+            <button id="filter-btn" type="button" class="btn btn-default">Filter Permits</button>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+    
 
     <!-- map div -->
-    <div id="map"></div>
-    <!-- API key -->
-    <script type="text/javascript" src="static/js/config.js"></script>
-      <!-- JS  -->
-    <script type="text/javascript" src="static/js/logic.js"></script>
-    <!-- <script type="text/javascript" src="static/js/logic2.js"></script> -->
-    <!-- <script type="text/javascript" src="static/js/logic3.js"></script> -->
-    <!-- <script type="text/javascript" src="static/js/logic4.js"></script> -->
+    <div style="height: 600px;">
+      <div id="map"></div>
+    </div>
+
 
   </body>
+  <!-- API key -->
+  <script type="text/javascript" src="static/js/config.js"></script>
+  <!-- JS  -->
+  <script type="text/javascript" src="static/js/logic.js"></script>
 </html>
