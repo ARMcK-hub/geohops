@@ -39,8 +39,8 @@ function filterDate(features, startDate, endDate) {
 //    D3 OBJECTS    //
 //////////////////////
 var buttonFilter = d3.select('#filter-btn')
-
-
+var startDateFilter = d3.select('#startdate')
+var endDateFilter = d3.select('#enddate')
 
 // Defining myMap Object
 var myMap = L.map('map', {
@@ -58,7 +58,8 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 
 
 
-
+// Initiailization of Webpage
+function init() {
 
 // Requesting geojson API call
 d3.json(url, (data) => {
@@ -69,11 +70,9 @@ d3.json(url, (data) => {
 
   var features = data.features
   var arrHeat = []
-  var startDate = "1-1-2015"
-  var endDate = "1-1-2020"
 
   // Filtering Data on Date
-  var filteredFeatures = filterDate(features, startDate, endDate)
+  var filteredFeatures = features
   
 
   //////////////////////
@@ -96,12 +95,76 @@ d3.json(url, (data) => {
 
   // Plotting Heatmap
   var mapHeat = L.heatLayer(arrHeat, {
+    radius: 25,
+    blur: 20,
+    maxZoom: 15
+  }).addTo(myMap)
+
+  // @TODO: insert Plotly initial plots
+
+
+  
+})
+
+}
+
+
+// Update Visuals on filtering
+buttonFilter.on('click', function() {
+
+  var startDate = startDateFilter.property('value')
+  var endDate = endDateFilter.property('value')
+
+  d3.json(url, (data) => {
+
+    var features = data.features
+    var arrHeat = []
+  
+    // Filtering Data on Date
+    var filteredFeatures = filterDate(features, startDate, endDate)
+    
+  
+    //////////////////////
+    //     HEAT MAP     //
+    //////////////////////
+  
+    // Clearing all map layers except MapBox layer
+    myMap.eachLayer(layer => { (layer._url) ? null : myMap.removeLayer(layer)} )
+
+
+    // Creating Location Array for Heat Map
+    filteredFeatures.forEach(feature => {
+      if (feature.geometry !== null) {
+  
+        var lat = feature.geometry.coordinates[1]
+        var lng = feature.geometry.coordinates[0]
+        var location = [lat, lng]
+        
+        if (lat && lng) { arrHeat.push(location) }
+        }
+    })
+  
+    console.log("Heat Map Data Count: " + arrHeat.length)
+  
+    // Plotting Heatmap
+    var mapHeat = L.heatLayer(arrHeat, {
       radius: 25,
       blur: 20,
       maxZoom: 15
-      
-  }).addTo(myMap)
+    }).addTo(myMap)
+
+    // @TODO: Inersert Plotly plots update on filter
+
+
+
+
+  })
 
 
 
 })
+
+
+
+
+init()
