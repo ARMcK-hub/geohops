@@ -7,7 +7,7 @@
 var limit = 10000
 var url = `https://data.nashville.gov/resource/3wb6-xy3j.geojson?$limit=${limit}`
 
-
+_KEYA = "pk.eyJ1IjoiYXJtY2siLCJhIjoiY2s3cnA4emV1M"
 
 //////////////////////
 //    Functions     //
@@ -43,6 +43,7 @@ function fieldCount(features, field) {
   return featureCount
 }
 
+// Year Count for different years in feature set
 function yearCount(features, field) {
   featureCount = {}
 
@@ -54,7 +55,6 @@ function yearCount(features, field) {
   })
   return featureCount
 }
-
 
 
 
@@ -71,12 +71,14 @@ var myMap = L.map('map', {
     zoom: 13
 })
 
+_KEYB = "DV0bjNlbzV5MHV2ZzQzNyJ9.kMQ-hRjKZQof9z4eniqWwA"
+
 // Generating Map from MapBox for myMap
 L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
   attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
   maxZoom: 18,
   id: "mapbox.streets",
-  accessToken: API_KEY
+  accessToken: _KEYA + _KEYB
 }).addTo(myMap);
 
 
@@ -84,44 +86,148 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 // Initiailization of Webpage
 function init() {
 
-// Requesting geojson API call
-d3.json(url, (data) => {
-  console.log(data)
+  // Requesting geojson API call
+  d3.json(url, (data) => {
+    console.log(data)
 
-  // Date lookup: data.properties.date_issued (YYYY-MM-DDT00:00:00.000)
+    var features = data.features
+    var filteredFeatures = features
+    
 
 
-  var features = data.features
-  var arrHeat = []
+    //////////////////////
+    //     HEAT MAP     //
+    //////////////////////
 
-  // Filtering Data on Date
-  var filteredFeatures = features
-  
+    var arrHeat = []
 
-  //////////////////////
-  //     HEAT MAP     //
-  //////////////////////
+    // Creating Location Array for Heat Map
+    filteredFeatures.forEach(feature => {
+      if (feature.geometry !== null) {
 
-  // Creating Location Array for Heat Map
-  filteredFeatures.forEach(feature => {
-    if (feature.geometry !== null) {
+        var lat = feature.geometry.coordinates[1]
+        var lng = feature.geometry.coordinates[0]
+        var location = [lat, lng]
+        
+        if (lat && lng) { arrHeat.push(location) }
+        }
+    })
 
-      var lat = feature.geometry.coordinates[1]
-      var lng = feature.geometry.coordinates[0]
-      var location = [lat, lng]
+    console.log("Heat Map Data Count: " + arrHeat.length)
+
+    // Plotting Heatmap
+    var mapHeat = L.heatLayer(arrHeat, {
+      radius: 25,
+      blur: 20,
+      maxZoom: 15
+    }).addTo(myMap)
+
+
+
+    //////////////////////
+    //     Bar Chart    //
+    //////////////////////
       
-      if (lat && lng) { arrHeat.push(location) }
+    // Grabbing bar plot data
+      var yearCounts = yearCount(filteredFeatures, 'date_issued')
+      var yearLabels = Object.keys(yearCounts)
+      var yearValue = Object.values(yearCounts)
+    
+      //  Create the Traces
+      var traceBar = {
+        x: yearLabels,
+        y: yearValue,
+        type: "bar",
       }
+    
+      // Create the data array for the plot
+      var dataBar = [traceBar]
+    
+      // Define the plot layout
+      var layoutBar = {
+        title: "Number Of Beer Permits",
+        xaxis: { title: "Date" },
+        yaxis: { title: "Number of Permits" }
+      }
+    
+      // Plot the chart to a div tag with id "plot"
+      Plotly.newPlot("plot", dataBar, layoutBar)
+
+
+
+    //////////////////////
+    //     Pie Chart    //
+    //////////////////////
+
+    // Values for pie chart
+    pieValues = fieldCount(filteredFeatures, "permit_subtype")
+
+    // Creating data trace for pie chart
+    var tracePie = {
+        labels: Object.keys(pieValues),
+        values: Object.values(pieValues),
+        type: 'pie',
+        textinfo: "label+percent",
+        insidetextorientation: "radial"
+    }
+    
+    var dataPie = [tracePie]
+    
+    // creating layout for pie chart
+    var layoutPie = {
+      title: "Liquor Licence By Permit Type",
+    }
+    
+    // Plotting pie chart
+    Plotly.newPlot("pie", dataPie, layoutPie)
+    
   })
 
-  console.log("Heat Map Data Count: " + arrHeat.length)
+}
 
-  // Plotting Heatmap
-  var mapHeat = L.heatLayer(arrHeat, {
-    radius: 25,
-    blur: 20,
-    maxZoom: 15
-  }).addTo(myMap)
+
+// Update Visuals on Date Filtering
+buttonFilter.on('click', function() {
+
+  var startDate = startDateFilter.property('value')
+  var endDate = endDateFilter.property('value')
+
+  d3.json(url, (data) => {
+
+    var features = data.features
+    var filteredFeatures = filterDate(features, startDate, endDate)
+    
+
+  
+    //////////////////////
+    //     HEAT MAP     //
+    //////////////////////
+  
+    var arrHeat = []
+
+    // Clearing all map layers except MapBox layer
+    myMap.eachLayer(layer => { (layer._url) ? null : myMap.removeLayer(layer)} )
+
+    // Creating Location Array for Heat Map
+    filteredFeatures.forEach(feature => {
+      if (feature.geometry !== null) {
+  
+        var lat = feature.geometry.coordinates[1]
+        var lng = feature.geometry.coordinates[0]
+        var location = [lat, lng]
+        
+        if (lat && lng) { arrHeat.push(location) }
+        }
+    })
+  
+    console.log("Heat Map Data Count: " + arrHeat.length)
+  
+    // Plotting Heatmap
+    var mapHeat = L.heatLayer(arrHeat, {
+      radius: 25,
+      blur: 20,
+      maxZoom: 15
+    }).addTo(myMap)
 
 
 
@@ -129,11 +235,10 @@ d3.json(url, (data) => {
   //     Bar Chart    //
   //////////////////////
     
-    // console.log(yearCount(filteredFeatures, 'date_issued'))
+    // Grabbing updated bar plot data
     yearCounts = yearCount(filteredFeatures, 'date_issued')
     yearLabels = Object.keys(yearCounts)
     yearValue = Object.values(yearCounts)
-    // console.log(yearLabels, yearValue)
   
     //  Create the Traces
     var trace1 = {
@@ -157,128 +262,33 @@ d3.json(url, (data) => {
 
 
 
-
-
-
-
   //////////////////////
   //     Pie Chart    //
   //////////////////////
 
-
-  // On Sales///
-  function onSelect(data) {
-    return data.properties.permit_subtype === "ONSALES";
-}
-var onSalesPermit = filteredFeatures.filter(onSelect);
-var onSalesCount = onSalesPermit.length; 
-console.log(onSalesCount)
-// Off Sales////
-function offSelect(data) {
-    return data.properties.permit_subtype === "OFFSALES";
-}
-var offSalesPermit = filteredFeatures.filter(offSelect);
-var offSalesCount = offSalesPermit.length; 
-console.log(offSalesCount)
-// On Off Sales///
-function onOffSelect(data) {
-    return data.properties.permit_subtype === "ONOFFSALES";
-}
-var onOffSalesPermit = filteredFeatures.filter(onOffSelect);
-var onOffSalesCount = onOffSalesPermit.length; 
-console.log(onOffSalesCount)
-// SPECIAL/////
-function specialSelect(data) {
-    return data.properties.permit_subtype === "SPECIAL";
-}
-var specialSalesPermit = filteredFeatures.filter(specialSelect);
-var specialSalesCount = specialSalesPermit.length; 
-console.log(specialSalesCount)
-
-// WHOLESALE/////
-function wholeSaleSelect(data) {
-    return data.properties.permit_subtype === "WHOLESALES";
-}
-var wholeSalesPermit = filteredFeatures.filter(wholeSaleSelect);
-var wholeSalesCount = wholeSalesPermit.length; 
-console.log(wholeSalesCount)
-// bar chart////
-var trace1 = {
-    labels: ["On Sales", "Off Sales", "On & Off Sales", "Special Sales", "Whole Sales"],
-    values: [onSalesCount, offSalesCount, onOffSalesCount, specialSalesCount, wholeSalesCount],
+  // Grabbing updated pie chart values
+  newPieValues = fieldCount(filteredFeatures, "permit_subtype")
+  
+  // Creating data trace for pie chart
+  var tracePie = {
+    labels: Object.keys(newPieValues),
+    values: Object.values(newPieValues),
     type: 'pie',
     textinfo: "label+percent",
     insidetextorientation: "radial"
-  };
-  
-  var data = [trace1];
-  
+  }
+
+  var data = [tracePie]
+
+  // Creating layout for pie chart
   var layout = {
     title: "Liquor Licence By Permit Type",
-  };
-  
+  }
+
+  // Updating pie chart
   Plotly.newPlot("pie", data, layout);
 
-
-
-  
-})
-
-}
-
-
-// Update Visuals on filtering
-buttonFilter.on('click', function() {
-
-  var startDate = startDateFilter.property('value')
-  var endDate = endDateFilter.property('value')
-
-  d3.json(url, (data) => {
-
-    var features = data.features
-    var arrHeat = []
-  
-    // Filtering Data on Date
-    var filteredFeatures = filterDate(features, startDate, endDate)
-    
-  
-    //////////////////////
-    //     HEAT MAP     //
-    //////////////////////
-  
-    // Clearing all map layers except MapBox layer
-    myMap.eachLayer(layer => { (layer._url) ? null : myMap.removeLayer(layer)} )
-
-
-    // Creating Location Array for Heat Map
-    filteredFeatures.forEach(feature => {
-      if (feature.geometry !== null) {
-  
-        var lat = feature.geometry.coordinates[1]
-        var lng = feature.geometry.coordinates[0]
-        var location = [lat, lng]
-        
-        if (lat && lng) { arrHeat.push(location) }
-        }
-    })
-  
-    console.log("Heat Map Data Count: " + arrHeat.length)
-  
-    // Plotting Heatmap
-    var mapHeat = L.heatLayer(arrHeat, {
-      radius: 25,
-      blur: 20,
-      maxZoom: 15
-    }).addTo(myMap)
-
-    // @TODO: Inersert Plotly plots update on filter
-    console.log(yearCount(filteredFeatures, 'date_issued'))
-    
-
-
   })
-
-
 
 })
 

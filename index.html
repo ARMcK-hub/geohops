@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>YUP</title>
+    <title>GeoHops Project</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -20,55 +20,131 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <!-- Our CSS -->
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
-
+    <!-- <link rel="icon" type="image" href="https://cdn.iconscout.com/icon/free/png-256/beer-mug-glass-drink-cocktail-emoj-symbol-babr-30679.png" -->
   </head>
   <body>
 
-
-
-
-    <div class="container">
-      <div class="row">
-        <!-- Plotly Plots -->
-        <div class="col-lg-5">
-          <div id="plot"></div>
-        </div>
-        <div class="col-lg-5">
-          <div id="pie"></div>
-        </div>
-        <!-- Filter Form -->
-        <div class="col-lg-2">
-          <form>
-            <div class="form-group">
-              <ul class="list-group" id="filters">
-                <li class="filter list-group-item">
-                  <label for="date">Start Date: </label>
-                  <input class="form-control" id="startdate" type="text" placeholder="3-14-2012">
-                </li>
-                <li class="filter list-group-item">
-                  <label for="date">End Date: </label>
-                  <input class="form-control" id="enddate" type="text" placeholder="12-21-2012">
-                </li>
-              </ul>
-            </div>
-            <button id="filter-btn" type="button" class="btn btn-default">Filter Permits</button>
-          </form>
-        </div>
-
+  <div class="container">
+    <br>
+    <!-- ######### -->
+    <!-- FIRST ROW -->
+    <!-- ######### -->
+    <div class="row">
+      <!-- Page Title -->
+      <div class="col-lg-7">
+        <h1>GeoHops</h1>
+        <h6>Welcome! GeoHops is a dashboard that seeks </h6>
       </div>
-
+      <!-- Button Filter -->
+      <div class="col-lg-2">
+        <button id="filter-btn" type="button" class="btn btn-primary">Filter Permits</button>
+      </div>
+      <!-- Filter Form -->
+      <div class="col-lg-3">
+        <form>
+          <div class="form-group">
+            <ul class="list-group" id="filters">
+              <li class="filter list-group-item">
+                <label for="date">Start Date: </label>
+                <input class="form-control" id="startdate" type="text" placeholder="MM-DD-YYYY">
+              </li>
+              <li class="filter list-group-item">
+                <label for="date">End Date: </label>
+                <input class="form-control" id="enddate" type="text" placeholder="MM-DD-YYYY">
+              </li>
+            </ul>
+          </div>
+        </form>
+      </div>
     </div>
+    <hr>
+    <!-- ########## -->
+    <!-- SECOND ROW -->
+    <!-- ########## -->
+    <div class="row">
+      <!-- Bar Graph -->
+      <div class="col-lg-8">
+        <div id="plot"></div>
+      </div>
+      <!-- Pie -->
+      <div class="col-lg-4">
+        <div id="pie"></div>
+        <!-- Button trigger modal -->
+          <div class="text-center">
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#learnmore" >
+              Beer permit types >>
+            </button>
+          </div>
+        <!-- End Button Trigger -->
+
+        <!-- Modal -->
+          <div class="modal fade" id="learnmore" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Learn About Beer Permit Types</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <h4>ON SALES</h4>
+                    <p>means a permit issued by the metropolitan beer permit board to a retailer engaged in the sale of beer which is to be consumed by the purchaser only upon the premises of such permittee. </p>
+                  <h4>OFF SALES</h4>
+                    <p>means a permit issued by the metropolitan beer permit board to a retailer engaged in the sale of beer which is not to be consumed by the purchaser upon the premises of such permittee.</p>
+                  <h4>ON & OFF SALES</h4>
+                    <p>See On Sales and Off Sales, and then smush them together.</p>
+                  <h4>SPECIAL</h4>
+                    <p>means an on-sale beer permit issued by the metropolitan beer permit board to a retailer engaged in the sale of beer in conjunction with activities which will last for a specified period of time, including, but not limited to, fairs, bazaars, and similar public or private social events.</p>
+                  <h4>WHOLESALES</h4>
+                    <p>means a permit issued by the metropolitan beer permit board to distributors, manufacturers, brewers of any branch of a brewery or manufacturer selling beer solely to retailers.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Close
+                  </button>
+                  <button type="button" class="btn btn-primary">
+                    <a href="https://www.nashville.gov/Beer-Board/Beer-Laws/Chapter-7.08.aspx">Nashville.gov</a>
+                  </button>  
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Modal -->
+      </div>
+    </div>
+    <hr><br>
+    <!-- ######### -->
+    <!-- THIRD ROW -->
+    <!-- ######### -->
+    <div class="row">
+      <div class="col-lg-2">
+        <h3>Beer Permit Hop Map</h3>
+      </div>
+      <div class="col-lg-10">
+      <!-- map div -->
+        <div style="height: 500px;">
+          <div id="map"></div>
+        </div>
+      </div>
+    </div>
+    <br><br>
+    <!-- Footer -->
+    <div class="row">
+      <div class="col-lg-12" id="footer">
+        <h4 >GeoHops Project Credits</h4>
+        <p><br>— Creation Date: 2020-03-24 <br>
+          — Authors: Drew McKinney, Nick Riffel, Jon Disarufino, Karsten Olson</p>
+        <br>
+      </div>
+    </div>
+  </div>
     
 
-    <!-- map div -->
-    <div style="height: 600px;">
-      <div id="map"></div>
-    </div>
+
 
 
   </body>
-  <!-- API key -->
-  <script type="text/javascript" src="static/js/config.js"></script>
   <!-- JS  -->
   <script type="text/javascript" src="static/js/logic.js"></script>
 </html>
