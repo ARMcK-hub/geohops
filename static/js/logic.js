@@ -64,6 +64,7 @@ function yearCount(features, field) {
 var buttonFilter = d3.select('#filter-btn')
 var startDateFilter = d3.select('#startdate')
 var endDateFilter = d3.select('#enddate')
+var totalViewed = d3.select('#totalviewed')
 
 // Defining myMap Object
 var myMap = L.map('map', {
@@ -82,7 +83,6 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(myMap);
 
 
-
 // Initiailization of Webpage
 function init() {
 
@@ -92,8 +92,9 @@ function init() {
 
     var features = data.features
     var filteredFeatures = features
-    
 
+    // Outputting total filtered viewed value to HTML
+    totalViewed.text(String(filteredFeatures.length))
 
     //////////////////////
     //     HEAT MAP     //
@@ -197,7 +198,8 @@ buttonFilter.on('click', function() {
     var features = data.features
     var filteredFeatures = filterDate(features, startDate, endDate)
     
-
+    // Outputting total filtered viewed value to HTML
+    totalViewed.text(String(filteredFeatures.length))
   
     //////////////////////
     //     HEAT MAP     //
@@ -291,7 +293,6 @@ buttonFilter.on('click', function() {
   })
 
 })
-
 
 
 

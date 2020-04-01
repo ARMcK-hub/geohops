@@ -12,3 +12,8 @@ html {
 a {
   color: white;
 }
+
+.footer-color {
+  color: white;
+  background: #A9A9A9;
+}
