@@ -14,16 +14,16 @@ Version Author: Drew McKinney
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-![GitHub last commit](https://img.shields.io/github/last-commit/ARMcK-hub/GeoHops)
+![GitHub last commit](https://img.shields.io/github/last-commit/ARMcK-hub/geohops)
 [![MIT License][license-shield]][license-url]
-![GitHub top language](https://img.shields.io/github/languages/top/ARMcK-hub/GeoHops)
-![GitHub repo size](https://img.shields.io/github/repo-size/ARMcK-hub/GeoHops)
+![GitHub top language](https://img.shields.io/github/languages/top/ARMcK-hub/geohops)
+![GitHub repo size](https://img.shields.io/github/repo-size/ARMcK-hub/geohops)
 ![Website](https://img.shields.io/website?down_color=lightgrey&down_message=offline&up_color=blue&up_message=online&url=https%3A%2F%2Fwestendfinancial.herokuapp.com%2F)
 
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://armck-hub.github.io/GeoHops/">
+  <a href="https://armck-hub.github.io/geohops/">
     <img src="https://i.pinimg.com/originals/50/22/04/5022049fe24ed70fe2cc9592c40620da.png" alt="Logo" width="100" height="100">
   </a>
 
@@ -32,11 +32,11 @@ Version Author: Drew McKinney
   <p align="center">
     Nashville Beer Permits Visualized
     <br />
-    <a href="https://armck-hub.github.io/GeoHops/" target="_blank"><strong> >> Visit Demo >> </strong></a>
+    <a href="https://armck-hub.github.io/geohops/" target="_blank"><strong> >> Visit Demo >> </strong></a>
     <br />
-    <a href="https://github.com/ARMcK-hub/GeoHops/issues">Report Bug</a>
+    <a href="https://github.com/ARMcK-hub/geohops/issues">Report Bug</a>
     -
-    <a href="https://github.com/ARMcK-hub/GeoHops/issues">Request Feature</a>
+    <a href="https://github.com/ARMcK-hub/geohops/issues">Request Feature</a>
   </p>
 </p>
 
@@ -56,7 +56,7 @@ Version Author: Drew McKinney
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://armck-hub.github.io/GeoHops/)
+[![Product Name Screen Shot][product-screenshot]](https://armck-hub.github.io/geohops/)
 
 GeoHops is a web dashboard that displays various views of the Beer Permits in the Nashville Metro area.
 
@@ -122,14 +122,14 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 
 <!-- Project Dynamic -->
-[license-shield]: https://img.shields.io/github/license/ARMcK-hub/GeoHops.svg?style=flat
-[contributors-shield]: https://img.shields.io/github/contributors/ARMcK-hub/GeoHops.svg?style=flat
-[contributors-url]: https://github.com/ARMcK-hub/GeoHops/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/ARMcK-hub/GeoHops.svg?style=flat
-[forks-url]: https://github.com/ARMcK-hub/GeoHops/network/members
-[stars-shield]: https://img.shields.io/github/stars/ARMcK-hub/GeoHops.svg?style=flat
-[stars-url]: https://github.com/ARMcK-hub/GeoHops/stargazers
-[issues-shield]: https://img.shields.io/github/issues/ARMcK-hub/GeoHops.svg?style=flat
-[issues-url]: https://github.com/ARMcK-hub/GeoHops/issues
-[product-screenshot]: https://raw.githubusercontent.com/ARMcK-hub/GeoHops/master/static/images/Home_Page.png
+[license-shield]: https://img.shields.io/github/license/ARMcK-hub/geohops.svg?style=flat
+[contributors-shield]: https://img.shields.io/github/contributors/ARMcK-hub/geohops.svg?style=flat
+[contributors-url]: https://github.com/ARMcK-hub/geohops/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/ARMcK-hub/geohops.svg?style=flat
+[forks-url]: https://github.com/ARMcK-hub/geohops/network/members
+[stars-shield]: https://img.shields.io/github/stars/ARMcK-hub/geohops.svg?style=flat
+[stars-url]: https://github.com/ARMcK-hub/geohops/stargazers
+[issues-shield]: https://img.shields.io/github/issues/ARMcK-hub/geohops.svg?style=flat
+[issues-url]: https://github.com/ARMcK-hub/geohops/issues
+[product-screenshot]: https://raw.githubusercontent.com/ARMcK-hub/geohops/master/static/images/Home_Page.png
 
