@@ -7,7 +7,7 @@
 var limit = 10000
 var url = `https://data.nashville.gov/resource/3wb6-xy3j.geojson?$limit=${limit}`
 
-_KEYA = "pk.eyJ1IjoiYXJtY2siLCJhIjoiY2s3cnA4emV1M"
+_KEYA = "pk.eyJ1IjoiYXJtY2siLCJhIjoiY2t6am55cGxtMGJxczJ1bXFqZHV1YWVhcCJ9"
 
 //////////////////////
 //    Functions     //
@@ -72,13 +72,13 @@ var myMap = L.map('map', {
     zoom: 13
 })
 
-_KEYB = "DV0bjNlbzV5MHV2ZzQzNyJ9.kMQ-hRjKZQof9z4eniqWwA"
+_KEYB = ".4tQy-1PXro6rmfV8L-Q2XA"
 
 // Generating Map from MapBox for myMap
 L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
   attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
   maxZoom: 18,
-  id: "mapbox.streets",
+  id: "mapbox.mapbox-streets-v8",
   accessToken: _KEYA + _KEYB
 }).addTo(myMap);
 
