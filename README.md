@@ -14,16 +14,16 @@ Version Author: Drew McKinney
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-![GitHub last commit](https://img.shields.io/github/last-commit/ARMcK-hub/geohops)
+![GitHub last commit](https://img.shields.io/github/last-commit/armckinney/geohops)
 [![MIT License][license-shield]][license-url]
-![GitHub top language](https://img.shields.io/github/languages/top/ARMcK-hub/geohops)
-![GitHub repo size](https://img.shields.io/github/repo-size/ARMcK-hub/geohops)
+![GitHub top language](https://img.shields.io/github/languages/top/armckinney/geohops)
+![GitHub repo size](https://img.shields.io/github/repo-size/armckinney/geohops)
 ![Website](https://img.shields.io/website?down_color=lightgrey&down_message=offline&up_color=blue&up_message=online&url=https%3A%2F%2Fwestendfinancial.herokuapp.com%2F)
 
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://armck-hub.github.io/geohops/">
+  <a href="https://armckinney.github.io/geohops/">
     <img src="https://i.pinimg.com/originals/50/22/04/5022049fe24ed70fe2cc9592c40620da.png" alt="Logo" width="100" height="100">
   </a>
 
@@ -32,11 +32,11 @@ Version Author: Drew McKinney
   <p align="center">
     Nashville Beer Permits Visualized
     <br />
-    <a href="https://armck-hub.github.io/geohops/" target="_blank"><strong> >> Visit Demo >> </strong></a>
+    <a href="https://armckinney.github.io/geohops/" target="_blank"><strong> >> Visit Demo >> </strong></a>
     <br />
-    <a href="https://github.com/ARMcK-hub/geohops/issues">Report Bug</a>
+    <a href="https://github.com/armckinney/geohops/issues">Report Bug</a>
     -
-    <a href="https://github.com/ARMcK-hub/geohops/issues">Request Feature</a>
+    <a href="https://github.com/armckinney/geohops/issues">Request Feature</a>
   </p>
 </p>
 
@@ -56,7 +56,7 @@ Version Author: Drew McKinney
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://armck-hub.github.io/geohops/)
+[![Product Name Screen Shot][product-screenshot]](https://armckinney.github.io/geohops/)
 
 GeoHops is a web dashboard that displays various views of the Beer Permits in the Nashville Metro area.
 
@@ -111,25 +111,25 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
 <!-- Stock -->
-[license-url]: https://github.com/ARMcK-hub/West-End-Financial/blob/master/LICENSE.txt
+[license-url]: https://github.com/armckinney/West-End-Financial/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/drew-mckinney/
 [email-shield]: https://img.shields.io/badge/-Email-black.svg?style=flat&colorB=555
 [email-url]: mailto:andrewryanmckinney@gmail.com
 [github-shield]: https://img.shields.io/badge/-GitHub-black.svg?style=flat&colorB=555
-[github-url]: https://github.com/ARMcK-hub
+[github-url]: https://github.com/armckinney
 [languages-shield]: https://img.shields.io/badge/-GitHub-black.svg?style=flat&colorB=555
 
 
 <!-- Project Dynamic -->
-[license-shield]: https://img.shields.io/github/license/ARMcK-hub/geohops.svg?style=flat
-[contributors-shield]: https://img.shields.io/github/contributors/ARMcK-hub/geohops.svg?style=flat
-[contributors-url]: https://github.com/ARMcK-hub/geohops/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/ARMcK-hub/geohops.svg?style=flat
-[forks-url]: https://github.com/ARMcK-hub/geohops/network/members
-[stars-shield]: https://img.shields.io/github/stars/ARMcK-hub/geohops.svg?style=flat
-[stars-url]: https://github.com/ARMcK-hub/geohops/stargazers
-[issues-shield]: https://img.shields.io/github/issues/ARMcK-hub/geohops.svg?style=flat
-[issues-url]: https://github.com/ARMcK-hub/geohops/issues
-[product-screenshot]: https://raw.githubusercontent.com/ARMcK-hub/geohops/master/static/images/Home_Page.png
+[license-shield]: https://img.shields.io/github/license/armckinney/geohops.svg?style=flat
+[contributors-shield]: https://img.shields.io/github/contributors/armckinney/geohops.svg?style=flat
+[contributors-url]: https://github.com/armckinney/geohops/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/armckinney/geohops.svg?style=flat
+[forks-url]: https://github.com/armckinney/geohops/network/members
+[stars-shield]: https://img.shields.io/github/stars/armckinney/geohops.svg?style=flat
+[stars-url]: https://github.com/armckinney/geohops/stargazers
+[issues-shield]: https://img.shields.io/github/issues/armckinney/geohops.svg?style=flat
+[issues-url]: https://github.com/armckinney/geohops/issues
+[product-screenshot]: https://raw.githubusercontent.com/armckinney/geohops/master/static/images/Home_Page.png
 
