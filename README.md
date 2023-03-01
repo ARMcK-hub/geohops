@@ -26,7 +26,7 @@
     </p>
     <p>
     <!-- Links -->
-        <a href="#demo">View Demo</a>
+        <a href="https://armckinney.github.io/geohops/">View Demo</a>
         ·
         <a href="https://github.com/armckinney/geohops/issues/new/choose">Report Bug</a>
         ·
